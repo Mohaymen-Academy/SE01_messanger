@@ -2,6 +2,8 @@ services:
   db:
     image: postgres
     restart: always
+#    command: >
+#      bash -c "psql -h localhost -U postgres -c "create database hami_postgres""
     environment:
       POSTGRES_PASSWORD: 123123
     ports:
