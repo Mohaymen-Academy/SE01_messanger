@@ -9,5 +9,4 @@ class HamiApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
