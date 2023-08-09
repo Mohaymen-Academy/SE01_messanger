@@ -10,13 +10,14 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
-@Setter @Getter
+@Setter
+@Getter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique=true, nullable = false)
+    @Column(unique = true, nullable = false)
     @Email
     private String email;
 

@@ -7,6 +7,8 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "profiles")
 @Setter
@@ -16,7 +18,7 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique=true, nullable = false, length = 40)
+    @Column(unique = true, nullable = false, length = 40)
     @Size(min = 3, max = 40)
     private String username;
 
@@ -37,4 +39,10 @@ public class Profile {
     @ManyToOne
     @JoinColumn(nullable = false, name = "user_id")
     private User user;
+
+    @OneToMany
+    private Set<Subscription> subscriptions;
+
+    @OneToMany
+    private Set<Message> messages;
 }
