@@ -21,8 +21,8 @@ public class User {
     @Email
     private String email;
 
-    @Column(nullable = false, length = 50)
-    @Size(min = 8, max = 50)
+    @Column(nullable = false, length = 64)
+    @Size(min = 8, max = 64)
     private String password;
 
     @OneToMany
