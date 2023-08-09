@@ -4,9 +4,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Entity
 @Table(name = "messages")
@@ -21,8 +21,8 @@ public class Message {
     @Size(max = 1000)
     private String text;
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
+    @CreatedDate
+    private Instant createdAt;
 
     @Column(length = 10_000_000)
     @Size(max = 10_000_000)
