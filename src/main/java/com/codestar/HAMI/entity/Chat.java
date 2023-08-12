@@ -24,7 +24,7 @@ public class Chat {
     @Column(nullable = false)
     @NotEmpty
     @Enumerated(EnumType.STRING)
-    private ChatType chatType;
+    private ChatTypeEnum chatType;
 
     @Column(length = 200)
     @Size(max = 200)
@@ -39,10 +39,4 @@ public class Chat {
 
     @OneToMany
     private Set<Message> messages;
-}
-
-enum ChatType {
-    PV,
-    GROUP,
-    CHANNEL
 }
