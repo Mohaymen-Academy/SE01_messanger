@@ -4,6 +4,7 @@ import com.codestar.HAMI.entity.Chat;
 import com.codestar.HAMI.model.ChatModel;
 import com.codestar.HAMI.repository.ChatRepository;
 import com.codestar.HAMI.service.ChatService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -69,8 +70,15 @@ public class ChatController {
     }
 
     @PostMapping("/create")
-    public void createChat(@RequestBody Chat chat) {
-
+    public ChatModel createChat(@Valid @RequestBody Chat chat) {
+        Chat createChat = chatService.createChat(chat);
+        return ChatModel.builder()
+                .chatId(createChat.getId())
+                .bio(createChat.getBio())
+                .chatType(createChat.getChatType())
+                .description(createChat.getDescription())
+                .photo(createChat.getPhoto())
+                .build();
     }
 
 }
