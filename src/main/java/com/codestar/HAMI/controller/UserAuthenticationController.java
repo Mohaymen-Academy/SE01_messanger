@@ -20,7 +20,7 @@ public class UserAuthenticationController {
         authenticationService.addUser(user);
     }
 
-    @GetMapping("/signin")
+    @PostMapping("/signin")
     public void userSignin(@Valid @RequestBody User user){
         String password = user.getPassword();
         user = authenticationService.getUserByEmail(user.getEmail());
