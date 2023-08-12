@@ -1,14 +1,25 @@
 services:
-  db:
-    image: postgres
-    restart: always
-#    command: >
-#      bash -c "psql -h localhost -U postgres -c "create database hami_postgres""
-    environment:
-      POSTGRES_PASSWORD: 123123
-    ports:
-      - 1234:5432
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    db:
+        image: postgres
+        restart: always
+        environment:
+            POSTGRES_PASSWORD: 123123
+        ports:
+            - 1234:5432
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+    dbsetup:
+        image: postgres
+        environment:
+            PGPASSWORD: 123123
+        depends_on:
+            - db
+        restart: "no"
+        entrypoint:
+            [
+                "sh",
+                "-c",
+                "echo \"SELECT 'CREATE DATABASE hermes_postgres' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'hermes_postgres')\\gexec\" | psql -h db -U postgres",
+            ]
 volumes:
-  pgdata:
+    pgdata:
