@@ -1,0 +1,1 @@
+SELECT 'CREATE DATABASE hami_postgres' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'hami_postgres')\gexec
