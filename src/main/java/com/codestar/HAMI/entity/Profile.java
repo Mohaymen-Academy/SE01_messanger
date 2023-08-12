@@ -25,7 +25,7 @@ public class Profile {
     @Column(length = 60, nullable = false)
     @NotEmpty
     @NotBlank
-    @Size(min = 8, max = 50)
+    @Size(min = 3, max = 50)
     private String firstName;
 
     @Column(length = 60)

@@ -32,4 +32,8 @@ public class AuthenticationService {
     public boolean authenticateUser(User user, String password) {
         return user.getPassword().equals(getHashedPassword(password));
     }
+
+    public User getUserById(long userId) {
+        return userRepository.findById(userId).orElse(null);
+    }
 }
