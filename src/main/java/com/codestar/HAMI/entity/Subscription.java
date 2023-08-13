@@ -1,11 +1,12 @@
 package com.codestar.HAMI.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Table(name = "subscriptions")
-@Setter
+@Setter @Getter
 public class Subscription {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
