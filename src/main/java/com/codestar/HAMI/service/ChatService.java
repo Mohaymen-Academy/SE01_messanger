@@ -8,12 +8,14 @@ import com.codestar.HAMI.repository.ChatRepository;
 import com.codestar.HAMI.repository.SubscriptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class ChatService {
     @Autowired
     ChatRepository chatRepository;
@@ -28,7 +30,7 @@ public class ChatService {
     SubscriptionService subscriptionService;
 
 
-    public List<Chat> getAllChats(long profileId) {
+    public List<Chat> getAllChats(Long profileId) {
         Profile profile = profileService.getProfileByProfileId(profileId);
         if(profile == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No Profile Found with profile id.");
@@ -50,15 +52,16 @@ public class ChatService {
         return chat;
     }
 
-    public Chat updateChat(long chatId ,Chat chat) {
+    public Chat updateChat(Long chatId ,Chat chat) {
         Chat updateChat = chatRepository.findById(chatId)
                 .orElse(null);
+
+        System.out.println(updateChat.getId());
 
         if(updateChat != null) {
             updateChat.setBio(chat.getBio());
             updateChat.setChatType(chat.getChatType());
             updateChat.setDescription(chat.getDescription());
-            updateChat.setPhoto(chat.getPhoto());
 
             chatRepository.save(updateChat);
         }

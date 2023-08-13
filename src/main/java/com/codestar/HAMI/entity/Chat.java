@@ -2,6 +2,7 @@ package com.codestar.HAMI.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,7 +23,8 @@ public class Chat {
     private String bio;
 
     @Column(nullable = false)
-    @NotEmpty
+    //@NotEmpty
+    @NotNull
     @Enumerated(EnumType.STRING)
     private ChatTypeEnum chatType;
 

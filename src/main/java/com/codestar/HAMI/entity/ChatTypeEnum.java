@@ -1,9 +1,7 @@
 package com.codestar.HAMI.entity;
 
-public class ChatTypeEnum {
-    enum ChatType {
-        PV,
-        GROUP,
-        CHANNEL
-    }
+public enum ChatTypeEnum {
+    PV,
+    GROUP,
+    CHANNEL
 }

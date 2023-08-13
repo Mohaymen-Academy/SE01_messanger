@@ -19,10 +19,10 @@ public class ChatController {
     @Autowired
     ChatService chatService;
     @Autowired
-    private ChatRepository chatRepository;
+    ChatRepository chatRepository;
 
-    @GetMapping("/get")
-    public List<ChatModel> getChats(long profileId) {
+    @GetMapping("/get/{profileId}")
+    public List<ChatModel> getChats(@PathVariable Long profileId) {
         List<Chat> chats = chatService.getAllChats(profileId);
         List<ChatModel> chatModels = new ArrayList<>();
         for(Chat chat : chats) {
@@ -54,7 +54,7 @@ public class ChatController {
     }
 
     @PutMapping("{chatId}")
-    public ChatModel updateChat(@PathVariable long chatId,@RequestBody Chat chatDetail) {
+    public ChatModel updateChat(@PathVariable Long chatId,@RequestBody Chat chatDetail) {
         Chat chat  = chatService.updateChat(chatId, chatDetail);
         if(chat == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Chat id doesn't exist!");
