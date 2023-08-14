@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.nio.charset.StandardCharsets;
 
 @Service
-public class AuthenticationService {
+public class UserService {
 
     @Autowired
     UserRepository userRepository;
