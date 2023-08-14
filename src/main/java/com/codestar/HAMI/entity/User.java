@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -26,5 +27,5 @@ public class User {
     private String password;
 
     @OneToMany
-    private Set<Profile> profiles;
+    private Set<Profile> profiles = new HashSet<>();
 }

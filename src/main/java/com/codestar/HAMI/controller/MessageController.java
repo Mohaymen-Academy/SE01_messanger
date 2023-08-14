@@ -54,7 +54,7 @@ public class MessageController {
         this.validateCreateMessage(messageMap, message);
         try {
             if (messageMap.containsKey("chatId") && messageMap.get("chatId") != null) {
-                message = messageService.createMessage(message, Long.valueOf(messageMap.get("chatId").toString()), Long.valueOf(messageMap.get("profileId").toString()));
+                message = messageService.createMessage(message, Long.valueOf(messageMap.get("chatId").toString()));
             } else {
                 message = messageService.createChatAndMessage(message, Long.valueOf(messageMap.get("profileId").toString()));
             }
@@ -85,7 +85,7 @@ public class MessageController {
 
     private void validateCreateMessage(Map<String, Object> messageMap, Message message) {
         Set<ConstraintViolation<Message>> violations = validator.validate(message);
-        if (!messageMap.containsKey("profileId")) {
+        if (!messageMap.containsKey("profileId") && !messageMap.containsKey("chatId")) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Missing 'profileId' key in the request body");
         }
         if (!violations.isEmpty()) {
